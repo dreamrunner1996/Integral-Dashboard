@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import { Button } from 'ant-design-vue'
+  import { Button } from 'ant-design-vue';
 
   import "./home.css";
 
@@ -23,9 +23,6 @@
 
     },
     methods: {
-      ClickI() {
-        window.alert('Click I')
-      }
     }
   }
 </script>
