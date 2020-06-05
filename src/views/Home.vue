@@ -17,7 +17,7 @@
     name: "Home",
     components: { Button },
     data: () => ({
-
+      weather: {}
     }),
     mounted() {
 
