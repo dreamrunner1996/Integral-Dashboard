@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div v-if="device === 'PC'">
-      <Home />
+    <div v-if="mobile">
+      <HomeMobile />
     </div>
     <div v-else>
-      <HomeMobile />
+      <Home />
     </div>
   </div>
 </template>
@@ -19,24 +19,55 @@
     name: 'App',
     components: { Home, HomeMobile },
     data: () => ({
-      system: {
-        win: false,
-        mac: false,
-        xll: false,
-        iPad: false
-      },
-      device: ""
+      device: "",
+      mobile: false
     }),
+    watch: {
+      device(newVal) {
+        let _this = this
+        switch (newVal) {
+          case "iOS": {
+            _this.mobile = true
+            console.log("IOS")
+            break
+          }
+          case "Android": {
+            _this.mobile = true
+            console.log("AND")
+            break
+          }
+          case "PC": {
+            _this.mobile = false
+            console.log("PC")
+            break
+          }
+          default: {
+            _this.mobile = false
+            console.log("unknown")
+            break
+          }
+        }
+      }
+    },
     mounted() {
-      let p = navigator.platform;
-      this.system.win = p.indexOf("Win") === 0;
-      this.system.mac = p.indexOf("Mac") === 0;
-      this.system.x11 = (p === "X11") || (p.indexOf("Linux") === 0);
-      this.system.ipad = navigator.userAgent.match(/iPad/i) !== null;
-      if (this.system.win || this.system.mac || this.system.xll || this.system.ipad) {
-        this.device = "PC"
-      } else {
-        this.device = "mobile"
+      let _this = this
+      this.DeviceJudgement()
+      window.onresize = function() {
+        setTimeout(() => {
+          _this.DeviceJudgement()
+        }, 100)
+      }
+    },
+    methods: {
+      DeviceJudgement() {
+        let _this = this
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          _this.device = "iOS"
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+          _this.device = "Android"
+        } else {
+          _this.device = "PC"
+        }
       }
     }
   }

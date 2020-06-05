@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-// 使用组件库  ---  ant, Vant
-// js组件已加入 babel.config.js  ---  按需加入
+import Vant from 'vant'
+import Ant from 'ant-design-vue'
+
 import "ant-design-vue/dist/antd.css"
 import "vant/lib/index.css"
+
+Vue.use(Vant)
+Vue.use(Ant)
 
 Vue.config.productionTip = false
 
