@@ -1,0 +1,31 @@
+<template>
+  <div class="home-content">
+    <Button type="primary">Primary</Button>
+    <hr>
+    <div class="scroll-content">
+
+    </div>
+  </div>
+</template>
+
+<script>
+  import { Button } from 'ant-design-vue'
+
+  import "./home.css";
+
+  export default {
+    name: "Home",
+    components: { Button },
+    data: () => ({
+
+    }),
+    mounted() {
+
+    },
+    methods: {
+      ClickI() {
+        window.alert('Click I')
+      }
+    }
+  }
+</script>
