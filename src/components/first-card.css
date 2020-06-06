@@ -1,0 +1,16 @@
+.first-card-content {
+  height: 900px;
+  width: 820px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.first-card-content .first-item-head {
+  color: #FFFFFF;
+}
+
+.first-card-content .first-item-body {
+  color: #FFFFFF;
+}

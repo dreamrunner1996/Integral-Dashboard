@@ -55,6 +55,10 @@
     font-size: 1.8em;
 }
 
+.home-content .top-card .time-card {
+    width: 220px;
+}
+
 .home-content .body-card {
     height: 980px;
     min-height: 980px;
@@ -109,6 +113,10 @@
 .home-content .body-card .body-card-center {
     height: 900px;
     width: 820px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-content .body-card .body-card-right {

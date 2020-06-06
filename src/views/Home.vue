@@ -37,11 +37,12 @@
         </div>
       </div>
       <div class="body-card-center">
-        <button @click="test">test</button>
+        <FirstCard />
       </div>
       <div class="body-card-right">
 
       </div>
+      <button @click="test">test</button>
     </div>
   </div>
 </template>
@@ -50,6 +51,7 @@
   import Time from "./../components/Time"
   import Notify from "../components/Notify"
   import IntegrateCard from "../components/IntegrateCard"
+  import FirstCard from "../components/FirstCard"
 
   import "./home.css"
 
@@ -59,12 +61,12 @@
 
   const bodyCardLeftBodyScroll = {
     marginTop: 0,
-    animation: "bodyCardLeftBodyScroll 10s linear infinite"
+    animation: "bodyCardLeftBodyScroll 20s linear infinite"
   }
 
   export default {
     name: "Home",
-    components: { Time, Notify, IntegrateCard },
+    components: { Time, Notify, IntegrateCard, FirstCard },
     data: () => ({
       // 全局出现的 style 动态样式
       styleList: {
@@ -72,7 +74,7 @@
         bodyCardLeftBodyScroll
       },
       // 没有通知时显示标题名
-      dashboardName: "利事丰员工积分看板",
+      dashboardName: "积分看板",
       // 通知信息
       notifyMessage: "",
       // 左边积分排行信息列表
