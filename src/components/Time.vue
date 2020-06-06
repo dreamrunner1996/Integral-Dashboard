@@ -1,7 +1,14 @@
 <template>
   <div class="time-content">
-    {{ time.date }} <br />
-    {{ time.hour }} - {{ time.minute }} - {{ time.seconds }}
+    <div class="time-date">
+      {{ time.date }}
+    </div>
+    <div class="time-week">
+      {{ time.week }}
+    </div>
+    <div class="time-time">
+      {{ time.hour }}:{{ time.minute }}:{{ time.seconds }}
+    </div>
   </div>
 </template>
 
@@ -35,14 +42,14 @@
         let date = new Date()
         _this.time.date = date.getFullYear().toString()
         if (date.getMonth() < 10) {
-          _this.time.date += " - 0" + (date.getMonth() + 1).toString()
+          _this.time.date += "年0" + (date.getMonth() + 1).toString()
         } else {
-          _this.time.date += " - " + (date.getMonth() + 1).toString()
+          _this.time.date += "年" + (date.getMonth() + 1).toString()
         }
         if (date.getDate() < 10) {
-          _this.time.date += " - 0" + (date.getDate()).toString()
+          _this.time.date += "月0" + (date.getDate()).toString() + "日"
         } else {
-          _this.time.date += " - " + (date.getDate()).toString()
+          _this.time.date += "月" + (date.getDate()).toString() + "日"
         }
         switch (date.getDay()) {
           case 0: {

@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <Time @hourChange="HourChange" />
-    <button @click="HourChange"> click me to change weather </button>
-    <Weather v-if="fleshWeather" />
     <div v-if="mobile">
       <HomeMobile />
     </div>
@@ -15,16 +12,13 @@
 <script>
   import Home from "./views/Home"
   import HomeMobile from "./views/HomeMobile"
-  import Time from "./components/Time"
-  import Weather from "./components/Weather"
 
   import "./app.css"
 
   export default {
     name: 'App',
-    components: { Home, HomeMobile, Time, Weather },
+    components: { Home, HomeMobile },
     data: () => ({
-      fleshWeather: true,
       device: "",
       mobile: false
     }),
@@ -58,7 +52,6 @@
     mounted() {
       let _this = this
       _this.DeviceJudgement()
-      // _this.WeatherUpdate()
       window.onresize = function() {
         setTimeout(() => {
           _this.DeviceJudgement()
@@ -75,13 +68,6 @@
         } else {
           _this.device = "PC"
         }
-      },
-      HourChange() {
-        let _this = this
-        _this.fleshWeather = false
-        _this.$nextTick( () => {
-          _this.fleshWeather = true
-        } )
       }
     }
   }
