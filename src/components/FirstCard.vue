@@ -1,10 +1,53 @@
 <template>
   <div class="first-card-content">
     <div class="first-item-head">
-      123124
+      <div class="first-item-head-img">
+        <img src="./../assets/wx1.jpg" alt="#" />
+      </div>
+      <div class="first-item-head-context">
+        <div class="first-item-head-context-img">
+          <img src="./../assets/jb1.png" alt="#" />
+        </div>
+        <span class="first-item-head-context-name">小关列车长</span>
+      </div>
     </div>
     <div class="first-item-body">
-      41242412
+      <div class="first-item-body-card1">
+        <div class="first-item-body-card1-item">99</div>
+        <div class="first-item-body-card1-title">
+          <div class="first-item-body-card1-title-img">
+            <img src="./../assets/jf.png" alt="card-jf" />
+          </div>
+          <span>昨日积分</span>
+        </div>
+      </div>
+      <div class="first-item-body-card2">
+        <div class="first-item-body-card2-item">100</div>
+        <div class="first-item-body-card2-title">
+          <div class="first-item-body-card2-title-img">
+            <img src="./../assets/rzg.png" alt="card-rzg" />
+          </div>
+          <span>最高积分</span>
+        </div>
+      </div>
+      <div class="first-item-body-card3">
+        <div class="first-item-body-card3-item">5</div>
+        <div class="first-item-body-card3-title">
+          <div class="first-item-body-card3-title-img">
+            <img src="./../assets/first.png" alt="card-first" />
+          </div>
+          <span>获MVP数</span>
+        </div>
+      </div>
+      <div class="first-item-body-card4">
+        <div class="first-item-body-card4-item">2652</div>
+        <div class="first-item-body-card4-title">
+          <div class="first-item-body-card4-title-img">
+            <img src="./../assets/month.png" alt="card-month" />
+          </div>
+          <span>总积分</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
