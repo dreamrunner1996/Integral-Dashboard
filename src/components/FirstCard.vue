@@ -2,7 +2,8 @@
   <div class="first-card-content">
     <div class="first-item-head">
       <div class="first-item-head-img">
-        <img :src="imgUrl" alt="#" />
+        <img v-if="imgUrl" :src="imgUrl" alt="#" />
+        <img v-else src="./../assets/userInfo.png" alt="">
       </div>
       <div class="first-item-head-context">
         <div class="first-item-head-context-img">
@@ -53,7 +54,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>

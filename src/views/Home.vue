@@ -64,7 +64,6 @@
           </div>
         </div>
       </div>
-      <button @click="HourChange">update</button>
     </div>
   </div>
 </template>
@@ -127,7 +126,6 @@
         // 获取数据
         Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path+_this.dataApi.file).
         then(res => {
-          console.log(res.data)
           _this.notifyMessage = res.data["notifyList"]
           _this.integrateCardList = res.data["allIntegralList"]
           for(let i = 0; i < res.data["allIntegralList"].length; i++) {

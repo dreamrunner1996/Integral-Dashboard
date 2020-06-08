@@ -28,22 +28,18 @@
         switch (newVal) {
           case "iOS": {
             _this.mobile = true
-            console.log("IOS")
             break
           }
           case "Android": {
             _this.mobile = true
-            console.log("AND")
             break
           }
           case "PC": {
             _this.mobile = false
-            console.log("PC")
             break
           }
           default: {
             _this.mobile = false
-            console.log("unknown")
             break
           }
         }
