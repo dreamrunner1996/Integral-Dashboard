@@ -4,7 +4,12 @@
       {{ projectName ? projectName : "项目名称" }} - {{ teamName ? teamName : "项目小组" }}
     </div>
     <div class="unusual-card-team-member">
-      {{ teamMember.length ? teamMember : "项目小组人员" }}
+      <span v-if="teamMember.length">
+        <span v-for="(index, item) in teamMember" :key="'teamMember' + item">{{ index }}
+          <span v-if="item !== teamMember.length-1">、</span>
+        </span>
+      </span>
+      <span v-else>"项目小组人员"</span>
     </div>
     <div class="unusual-card-unusual-account">
       {{ account ? account : "异常原因" }}
