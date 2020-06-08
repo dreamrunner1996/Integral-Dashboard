@@ -8,12 +8,12 @@
         <div class="first-item-head-context-img">
           <img src="./../assets/jb1.png" alt="#" />
         </div>
-        <span class="first-item-head-context-name">小关列车长</span>
+        <span class="first-item-head-context-name">{{ name ? name : 'robot1' }}</span>
       </div>
     </div>
     <div class="first-item-body">
       <div class="first-item-body-card1">
-        <div class="first-item-body-card1-item">99</div>
+        <div class="first-item-body-card1-item">{{ yesterdayIntegration }}</div>
         <div class="first-item-body-card1-title">
           <div class="first-item-body-card1-title-img">
             <img src="./../assets/jf.png" alt="card-jf" />
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="first-item-body-card2">
-        <div class="first-item-body-card2-item">100</div>
+        <div class="first-item-body-card2-item">{{ highestIntegration }}</div>
         <div class="first-item-body-card2-title">
           <div class="first-item-body-card2-title-img">
             <img src="./../assets/rzg.png" alt="card-rzg" />
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="first-item-body-card3">
-        <div class="first-item-body-card3-item">5</div>
+        <div class="first-item-body-card3-item">{{ getMVP }}</div>
         <div class="first-item-body-card3-title">
           <div class="first-item-body-card3-title-img">
             <img src="./../assets/first.png" alt="card-first" />
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="first-item-body-card4">
-        <div class="first-item-body-card4-item">2652</div>
+        <div class="first-item-body-card4-item">{{ allIntegration }}</div>
         <div class="first-item-body-card4-title">
           <div class="first-item-body-card4-title-img">
             <img src="./../assets/month.png" alt="card-month" />

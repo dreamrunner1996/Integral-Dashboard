@@ -22,7 +22,7 @@
             昨日积分排名
           </div>
           <div class="body-card-left-header-img">
-            <img src="./../assets/jx.png" alt="#">
+            <img src="./../assets/jx.png" alt="#" />
           </div>
         </div>
         <div class="body-card-left-body">
@@ -40,9 +40,21 @@
         <FirstCard />
       </div>
       <div class="body-card-right">
-
+        <div class="body-card-right-header">
+          <div class="body-card-right-header-text">
+            异常
+          </div>
+          <div class="body-card-right-header-img">
+            <img src="./../assets/yc.png" alt="#" />
+          </div>
+        </div>
+        <div class="body-card-left-body">
+          <div class="body-card-right-body-scroll">
+            <UnusualCard />
+          </div>
+        </div>
       </div>
-      <button @click="test">test</button>
+<!--      <button @click="test">test</button>-->
     </div>
   </div>
 </template>
@@ -52,12 +64,9 @@
   import Notify from "../components/Notify"
   import IntegrateCard from "../components/IntegrateCard"
   import FirstCard from "../components/FirstCard"
+  import UnusualCard from "../components/UnusualCard"
 
   import "./home.css"
-
-  const bodyCardLeftBodyUnScroll = {
-
-  }
 
   const bodyCardLeftBodyScroll = {
     marginTop: 0,
@@ -66,11 +75,10 @@
 
   export default {
     name: "Home",
-    components: { Time, Notify, IntegrateCard, FirstCard },
+    components: { Time, Notify, IntegrateCard, FirstCard, UnusualCard },
     data: () => ({
       // 全局出现的 style 动态样式
       styleList: {
-        bodyCardLeftBodyUnScroll,
         bodyCardLeftBodyScroll
       },
       // 没有通知时显示标题名
