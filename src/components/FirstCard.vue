@@ -2,7 +2,7 @@
   <div class="first-card-content">
     <div class="first-item-head">
       <div class="first-item-head-img">
-        <img src="./../assets/wx1.jpg" alt="#" />
+        <img :src="imgUrl" alt="#" />
       </div>
       <div class="first-item-head-context">
         <div class="first-item-head-context-img">

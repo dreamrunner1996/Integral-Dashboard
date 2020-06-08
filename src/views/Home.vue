@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="body-card-left-body">
-          <div class="body-card-left-body-scroll" :style="integrateCardList.id.length > 6 ? styleList.bodyCardLeftBodyScroll : styleList.bodyCardLeftBodyUnScroll">
+          <div class="body-card-left-body-scroll" :style="integrateCardList.id.length > 6 ? styleList.bodyCardLeftBodyScroll : {}">
             <IntegrateCard v-for="(index, item) in integrateCardList.id"
                            :key="'integration' + index"
                            :imgUrl="integrateCardList.imgUrl[item]"
@@ -37,7 +37,12 @@
         </div>
       </div>
       <div class="body-card-center">
-        <FirstCard />
+        <FirstCard :img-url="integrateFirstList.imgUrl"
+                   :name="integrateFirstList.name"
+                   :yesterday-integration="integrateFirstList.yesterdayIntegration"
+                   :highest-integration="integrateFirstList.highestIntegration"
+                   :get-m-v-p="integrateFirstList.getMVP"
+                   :all-integration="integrateFirstList.allIntegration" />
       </div>
       <div class="body-card-right">
         <div class="body-card-right-header">
@@ -50,7 +55,12 @@
         </div>
         <div class="body-card-left-body">
           <div class="body-card-right-body-scroll">
-            <UnusualCard />
+            <UnusualCard v-for="(index, item) in unusualList.id"
+                         :key="'unusual' + index"
+                         :project-name="unusualList.projectName[item]"
+                         :team-name="unusualList.teamName[item]"
+                         :team-member="unusualList.teamMember[item]"
+                         :account="unusualList.account[item]" />
           </div>
         </div>
       </div>
@@ -96,23 +106,34 @@
           require("./../assets/robot.png"),
           require("./../assets/robot.png")
         ],
-        name: [
-          "robot1", "robot2", "robot3", "robot4", "robot5", "robot6"
-        ],
-        integration: [
-          99, 97, 95, 92, 88, 82
-        ],
+        name: ["robot1", "robot2", "robot3", "robot4", "robot5", "robot6"],
+        integration: [99, 97, 95, 92, 88, 82],
         rank: [1, 2, 3, 4, 5, 6]
       },
       // 中间积分列表
       integrateFirstList: {
         id: 0,
-        imgUrl: require("./../assets/wx1.jpg"),
-        name: "robot1",
-        integration: 99
+        imgUrl: require("./../assets/xin.jpg"),
+        name: "xin",
+        yesterdayIntegration: 99,
+        highestIntegration: 100,
+        getMVP: 5,
+        allIntegration: 2899
       },
       // 右边异常列表
-      unusualList: {}
+      unusualList: {
+        id: [0, 1],
+        projectName: ["煲栖 v2.0", "煲栖 v2.1"],
+        teamName: ["雕霖之家", "栖雕之家"],
+        teamMember: {
+          0: ["煲栖", "栖霖", "霖煲", "栖霖"],
+          1: ["栖霖", "栖霖", "煲栖", "霖煲"]
+        },
+        account: [
+          "由于名字太过有型, 被甲方欣赏, 因此延迟1个月再进行工作",
+          "由于有雕, 所以任性, 以你你食栖啦你"
+        ]
+      }
     }),
     mounted() {
       let _this = this
