@@ -1,8 +1,8 @@
 <template>
   <marquee class="notify-content" direction="left">
-    <span v-for="(index, item) in notifyMessage" :key="'notify'+item">
-      {{ item }}：{{ index }}
-      <span style="margin-left: 150px" v-if="notifyMessage.length !== item">&nbsp;</span>
+    <span class="notify-text" v-for="(index, item) in notifyMessage" :key="'notify'+item">
+        {{ item }}：{{ index }}
+        <span style="margin-left: 150px" v-if="notifyMessage.length !== item"></span>
     </span>
   </marquee>
 </template>

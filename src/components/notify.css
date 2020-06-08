@@ -2,3 +2,6 @@
   color: #eaec29;
   overflow: hidden;
 }
+.notify-content .notify-text {
+  font-size: 40px;
+}

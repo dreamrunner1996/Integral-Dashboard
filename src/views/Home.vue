@@ -82,6 +82,7 @@
 
   let displayFirst = null
   let showDisplayCount = 0
+  let cssRuleListLength = 0
 
   const bodyCardLeftBodyScroll = {
     marginTop: 0,
@@ -115,6 +116,8 @@
     }),
     mounted() {
       let _this = this
+      cssRuleListLength = document.styleSheets[0].cssRules.length
+      console.log(cssRuleListLength)
       // 获取数据
       _this.GetData()
     },
@@ -163,45 +166,26 @@
       // 动画效果
       AnimationCard() {
         let _this = this
+        console.log(document.styleSheets[0])
         if (_this.integrateCardList.length > 6) {
-            if(document.styleSheets[0].cssRules[4]) {
-              document.styleSheets[0].deleteRule(4)
-            }
-            document.styleSheets[0].insertRule(`@keyframes bodyCardLeftBodyScroll
-            {
-              0% {
-                margin-top: 0
-              }
-              25% {
-                  margin-top: calc(${-20 - 120 * (_this.integrateCardList.length - 7)}px)
-              }
-              50% {
-                  margin-top: calc(${-20 - 120 * (_this.integrateCardList.length - 7)}px)
-              }
-              75% {
-                  margin-top: 0
-              }
-            }`,4)
+          if(document.styleSheets[0].cssRules[cssRuleListLength]) {
+            document.styleSheets[0].deleteRule(cssRuleListLength)
+          }
+          document.styleSheets[0].insertRule(`@keyframes bodyCardLeftBodyScroll {
+            0% { margin-top: 0 }
+            25% { margin-top: calc(${-20 - 120 * (_this.integrateCardList.length - 7)}px) }
+            50% { margin-top: calc(${-20 - 120 * (_this.integrateCardList.length - 7)}px) }
+            75% { margin-top: 0 } }`,cssRuleListLength)
         }
         if(_this.unusualList.length > 4) {
-          if(document.styleSheets[0].cssRules[5]) {
-            document.styleSheets[0].deleteRule(5)
+          if(document.styleSheets[0].cssRules[cssRuleListLength+1]) {
+            document.styleSheets[0].deleteRule(cssRuleListLength+1)
           }
-          document.styleSheets[0].insertRule(`@keyframes bodyCardRightBodyScroll
-          {
-            0% {
-              margin-top: 0
-            }
-            25% {
-                margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px)
-            }
-            50% {
-                margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px)
-            }
-            75% {
-                margin-top: 0
-            }
-          }`,5)
+          document.styleSheets[0].insertRule(`@keyframes bodyCardRightBodyScroll {
+            0% { margin-top: 0 }
+            25% { margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px) }
+            50% { margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px) }
+            75% { margin-top: 0 } }`,cssRuleListLength+1)
         }
       },
       HourChange() {
