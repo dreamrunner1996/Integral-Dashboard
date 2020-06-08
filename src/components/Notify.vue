@@ -1,6 +1,9 @@
 <template>
   <marquee class="notify-content" direction="left">
-    {{ notifyMessage }}
+    <span v-for="(index, item) in notifyMessage" :key="'notify'+item">
+      {{ item }}：{{ index }}
+      <span style="margin-left: 150px" v-if="notifyMessage.length !== item">&nbsp;</span>
+    </span>
   </marquee>
 </template>
 
@@ -11,8 +14,8 @@
     name: "Notify",
     props: {
       notifyMessage: {
-        default: "",
-        type: String
+        default: () => ([]),
+        type: Array
       }
     },
     data: () => ({}),

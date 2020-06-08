@@ -9,11 +9,11 @@
         {{ name }}
       </div>
       <div class="integrate-card-information-integration">
-        当前积分: {{ integration }}
+        积分: {{ integration }}
       </div>
     </div>
     <div class="integrate-card-award">
-      <img v-if="showJB" :src="jbImgUrl[rank - 1]" alt="#" />
+      <img v-if="showJB" :src="jbImgUrl[sort - 1]" alt="#" />
     </div>
   </div>
 </template>
@@ -36,14 +36,14 @@
         default: 0,
         type: Number
       },
-      rank: {
+      sort: {
         default: 0,
         type: Number
       }
     },
     computed: {
       showJB: function() {
-        switch (this.rank) {
+        switch (this.sort) {
           case 1:
             return true
           case 2:
