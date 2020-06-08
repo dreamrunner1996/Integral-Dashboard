@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="integrate-card-award">
-      <img v-if="showJB" :src="jbImgUrl[sort - 1]" alt="#" />
+      <img v-if="showJB" :src="jbImgUrl[sort]" alt="#" />
     </div>
   </div>
 </template>
@@ -44,11 +44,11 @@
     computed: {
       showJB: function() {
         switch (this.sort) {
+          case 0:
+            return true
           case 1:
             return true
           case 2:
-            return true
-          case 3:
             return true
           default:
             return false

@@ -31,7 +31,7 @@
                            :key="'integral' + item"
                            :imgUrl="index['avatarPath']"
                            :name="index['name']"
-                           :integration="index['integralLastDate']"
+                           :integration="index['integralByDay']"
                            :sort="index['sort']" />
           </div>
         </div>
@@ -39,7 +39,7 @@
       <div class="body-card-center">
         <FirstCard :img-url="displayFirstList['avatarPath']"
                    :name="displayFirstList['name']"
-                   :yesterday-integration="displayFirstList['integralLastDate']"
+                   :yesterday-integration="displayFirstList['integralByDay']"
                    :highest-integration="displayFirstList['integralHistoryTop']"
                    :get-m-v-p="displayFirstList['mvpCount']"
                    :all-integration="displayFirstList['integralAll']" />
@@ -117,7 +117,6 @@
     mounted() {
       let _this = this
       cssRuleListLength = document.styleSheets[0].cssRules.length
-      console.log(cssRuleListLength)
       // 获取数据
       _this.GetData()
     },
@@ -127,12 +126,12 @@
         let _this = this
         _this.integrateFirstList = []
         // 获取数据
-        Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path+_this.dataApi.file).
+        Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path).
         then(res => {
           _this.notifyMessage = res.data["notifyList"]
           _this.integrateCardList = res.data["allIntegralList"]
           for(let i = 0; i < res.data["allIntegralList"].length; i++) {
-            if(res.data["allIntegralList"][i]["sort"] === 1) {
+            if(res.data["allIntegralList"][i]["sort"] === 0) {
               _this.integrateFirstList.push(res.data["allIntegralList"][i])
             }
           }
@@ -166,7 +165,6 @@
       // 动画效果
       AnimationCard() {
         let _this = this
-        console.log(document.styleSheets[0])
         if (_this.integrateCardList.length > 6) {
           if(document.styleSheets[0].cssRules[cssRuleListLength]) {
             document.styleSheets[0].deleteRule(cssRuleListLength)
