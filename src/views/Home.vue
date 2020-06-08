@@ -53,8 +53,8 @@
             <img src="./../assets/yc.png" alt="#" />
           </div>
         </div>
-        <div class="body-card-right-body">
-          <div class="body-card-right-body-scroll" v-if="unusualList.length">
+        <div class="body-card-right-body" v-if="unusualList.length">
+          <div class="body-card-right-body-scroll"  :style="unusualList.length > 4 ? styleList.bodyCardRightBodyScroll : {}">
             <UnusualCard v-for="(index, item) in unusualList"
                          :key="'unusual' + item"
                          :project-name="index['projectName']"
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <button @click="test">test</button>
+      <button @click="HourChange">update</button>
     </div>
   </div>
 </template>
@@ -88,6 +88,10 @@
     marginTop: 0,
     animation: "bodyCardLeftBodyScroll 20s linear infinite"
   }
+  const bodyCardRightBodyScroll = {
+    marginTop: 0,
+    animation: "bodyCardRightBodyScroll 20s linear infinite"
+  }
 
   export default {
     name: "Home",
@@ -96,7 +100,7 @@
       dataApi: Api,
       // 全局出现的 style 动态样式
       styleList: {
-        bodyCardLeftBodyScroll
+        bodyCardLeftBodyScroll, bodyCardRightBodyScroll
       },
       // 没有通知时显示标题名
       dashboardName: "积分看板",
@@ -162,8 +166,10 @@
       AnimationCard() {
         let _this = this
         if (_this.integrateCardList.length > 6) {
-          document.styleSheets[0].deleteRule(0)
-          document.styleSheets[0].insertRule(`@keyframes bodyCardLeftBodyScroll
+            if(document.styleSheets[0].cssRules[4]) {
+              document.styleSheets[0].deleteRule(4)
+            }
+            document.styleSheets[0].insertRule(`@keyframes bodyCardLeftBodyScroll
             {
               0% {
                 margin-top: 0
@@ -177,14 +183,33 @@
               75% {
                   margin-top: 0
               }
-            }`,0)
+            }`,4)
+        }
+        if(_this.unusualList.length > 4) {
+          if(document.styleSheets[0].cssRules[5]) {
+            document.styleSheets[0].deleteRule(5)
+          }
+          document.styleSheets[0].insertRule(`@keyframes bodyCardRightBodyScroll
+          {
+            0% {
+              margin-top: 0
+            }
+            25% {
+                margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px)
+            }
+            50% {
+                margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px)
+            }
+            75% {
+                margin-top: 0
+            }
+          }`,5)
         }
       },
-      test() {
+      HourChange() {
         let _this = this
         _this.GetData()
       },
-      HourChange() {},
     }
   }
 </script>
