@@ -5,7 +5,7 @@
         <img src="./../assets/robot.png" alt="#" />
       </div>
       <div class="notify-card">
-        <img v-if="notifyMessage.length > 0" src="./../assets/notify.png" alt="#">
+        <img v-if="notifyMessage.length > 0" src="./../assets/notify.png" alt="#" />
         <div class="notify-content">
           <span v-if="!notifyMessage.length > 0">{{ dashboardName }}</span>
           <Notify :notifyMessage="notifyMessage" />
@@ -29,7 +29,7 @@
           <div class="body-card-left-body-scroll" :style="integrateCardList.length > 6 ? styleList.bodyCardLeftBodyScroll : {}">
             <IntegrateCard v-for="(index, item) in integrateCardList"
                            :key="'integral' + item"
-                           :imgUrl="index['avatarPath']"
+                           :imgUrl="index['avatarName'] ? dataApi.url+':'+dataApi.port+dataApi.file+index['avatarName'] : ''"
                            :name="index['name']"
                            :integration="index['integralByDay']"
                            :sort="index['sort']" />
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="body-card-center">
-        <FirstCard :img-url="displayFirstList['avatarPath']"
+        <FirstCard :img-url="displayFirstList['avatarName'] ? dataApi.url+':'+dataApi.port+dataApi.file+displayFirstList['avatarName'] : ''"
                    :name="displayFirstList['name']"
                    :yesterday-integration="displayFirstList['integralByDay']"
                    :highest-integration="displayFirstList['integralHistoryTop']"
@@ -126,14 +126,12 @@
         let _this = this
         _this.integrateFirstList = []
         // 获取数据
-        Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path).
-        then(res => {
+        Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path, { params: _this.dataApi.condition }). then(res => {
+          if(!res.data["allIntegralList"].length) return
           _this.notifyMessage = res.data["notifyList"]
           _this.integrateCardList = res.data["allIntegralList"]
           for(let i = 0; i < res.data["allIntegralList"].length; i++) {
-            if(res.data["allIntegralList"][i]["sort"] === 0) {
-              _this.integrateFirstList.push(res.data["allIntegralList"][i])
-            }
+            if(res.data["allIntegralList"][i]["sort"] === 0) { _this.integrateFirstList.push(res.data["allIntegralList"][i]) }
           }
           _this.unusualList = res.data["errorTaskList"]
           // 判断是否有多个第一
