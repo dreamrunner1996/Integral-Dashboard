@@ -54,13 +54,13 @@
           </div>
         </div>
         <div class="body-card-right-body" v-if="unusualList.length">
-          <div class="body-card-right-body-scroll"  :style="unusualList.length > 4 ? styleList.bodyCardRightBodyScroll : {}">
+          <div class="body-card-right-body-scroll" :style="unusualList.length > 4 ? styleList.bodyCardRightBodyScroll : {}">
             <UnusualCard v-for="(index, item) in unusualList"
                          :key="'unusual' + item"
                          :project-name="index['projectName']"
                          :team-name="index['taskName']"
                          :team-member="index['taskMember']"
-                         :account="index['exceptionMessage']" />
+                         :account="index['exceptionMessage']"/>
           </div>
         </div>
       </div>
