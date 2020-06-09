@@ -2,7 +2,7 @@
   <marquee class="notify-content" direction="left">
     <span class="notify-text" v-for="(index, item) in notifyMessage" :key="'notify'+item">
         {{ item }}：{{ index }}
-        <span style="margin-left: 150px" v-if="notifyMessage.length !== item"></span>
+        <span style="margin-left: 150px" v-if="notifyMessage.length !== item" />
     </span>
   </marquee>
 </template>
@@ -19,12 +19,6 @@
       }
     },
     data: () => ({}),
-    methods: {
-
-    }
+    methods: {}
   }
 </script>
-
-<style scoped>
-
-</style>
