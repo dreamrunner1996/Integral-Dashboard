@@ -163,25 +163,26 @@
       // 动画效果
       AnimationCard() {
         let _this = this
+        console.log(document.styleSheets[0].cssRules[cssRuleListLength])
         if (_this.integrateCardList.length > 6) {
-          if(document.styleSheets[0].cssRules[cssRuleListLength]) {
-            document.styleSheets[0].deleteRule(cssRuleListLength)
+          if(document.styleSheets[0].cssRules[cssRuleListLength-1]) {
+            document.styleSheets[0].deleteRule(cssRuleListLength-1)
           }
           document.styleSheets[0].insertRule(`@keyframes bodyCardLeftBodyScroll {
             0% { margin-top: 0 }
             25% { margin-top: calc(${-20 - 120 * (_this.integrateCardList.length - 7)}px) }
             50% { margin-top: calc(${-20 - 120 * (_this.integrateCardList.length - 7)}px) }
-            75% { margin-top: 0 } }`,cssRuleListLength)
+            75% { margin-top: 0 } }`,cssRuleListLength-1)
         }
         if(_this.unusualList.length > 4) {
-          if(document.styleSheets[0].cssRules[cssRuleListLength+1]) {
-            document.styleSheets[0].deleteRule(cssRuleListLength+1)
+          if(document.styleSheets[0].cssRules[cssRuleListLength]) {
+            document.styleSheets[0].deleteRule(cssRuleListLength)
           }
           document.styleSheets[0].insertRule(`@keyframes bodyCardRightBodyScroll {
             0% { margin-top: 0 }
             25% { margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px) }
             50% { margin-top: calc(${-80 - 180 * (_this.unusualList.length - 5)}px) }
-            75% { margin-top: 0 } }`,cssRuleListLength+1)
+            75% { margin-top: 0 } }`,cssRuleListLength)
         }
       },
       HourChange() {
