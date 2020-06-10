@@ -2,7 +2,7 @@
   <div class="home-content">
     <div class="top-card">
       <div class="logo">
-        <img src="./../assets/robot.png" alt="#" />
+        <img src="./../assets/logo.png" alt="#" />
       </div>
       <div class="notify-card">
         <img v-if="notifyMessage.length > 0" src="./../assets/notify.png" alt="#" />
