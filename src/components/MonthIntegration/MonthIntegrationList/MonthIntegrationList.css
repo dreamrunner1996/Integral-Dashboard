@@ -1,0 +1,115 @@
+.month-integration-list-content {
+  width: 400px;
+  height: 160px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.month-integration-list-content .month-integration-list-item {
+  width: 400px;
+  height: 159px;
+  border-bottom: 1px solid #666666;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.month-integration-list-content .month-integration-list-item .user-info {
+  width: 110px;
+  height: 159px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.month-integration-list-content .month-integration-list-item .user-info .user-info-logo {
+  width: 90px;
+  height: 90px;
+}
+.month-integration-list-content .month-integration-list-item .user-info .user-info-name {
+  color: #FFFFFF;
+  font-size: 26px;
+  margin-top: -20px;
+}
+.month-integration-list-content .month-integration-list-item .user-integration {
+  width: 290px;
+  height: 159px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-per-rank {
+  width: 260px;
+  height: 24px;
+  line-height: 24px;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-per-rank .user-integration-per {
+  height: 24px;
+  line-height: 24px;
+  font-size: 20px;
+  color: #FFFFFF;
+  float: left;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-per-rank .user-integration-rank {
+  height: 24px;
+  line-height: 24px;
+  font-size: 24px;
+  color: #eaec29;
+  float: right;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-plan-card {
+  height: 46px;
+  width: 256px;
+  border: 2px solid #d22eea;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-plan-card .title {
+  color: #FFFFFF;
+  font-size: 22px;
+  width: 100px;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-plan-card .card-item {
+  width: 146px;
+  padding-left: 20px;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-plan-card .card-item .all {
+  text-align: left;
+  color: #FFFFFF;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-plan-card .card-item .average {
+  text-align: left;
+  color: #FFFFFF;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-clean-card {
+  height: 46px;
+  width: 256px;
+  border: 2px solid #eaa12e;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-clean-card .title {
+  color: #FFFFFF;
+  font-size: 22px;
+  width: 100px;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-clean-card .card-item {
+  width: 146px;
+  padding-left: 20px;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-clean-card .card-item .all {
+  text-align: left;
+  color: #FFFFFF;
+}
+.month-integration-list-content .month-integration-list-item .user-integration .user-integration-clean-card .card-item .average {
+  text-align: left;
+  color: #FFFFFF;
+}

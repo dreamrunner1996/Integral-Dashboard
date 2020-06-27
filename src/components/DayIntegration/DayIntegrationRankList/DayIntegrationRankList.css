@@ -1,0 +1,43 @@
+.day-integration-rank-list-content {
+  width: 225px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.day-integration-rank-list-content .day-integration-rank-list-item {
+  width: 225px;
+  height: 69px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid #666666;
+}
+.day-integration-rank-list-content .day-integration-rank-list-item .day-integration-rank-list-content-image {
+  height: 69px;
+  width: 70px;
+}
+.day-integration-rank-list-content .day-integration-rank-list-item .day-integration-rank-list-content-image img {
+  height: 65px;
+  width: 65px;
+}
+.day-integration-rank-list-content .day-integration-rank-list-item .day-integration-rank-list-content-name-pm {
+  display: flex;
+  height: 69px;
+  width: 155px;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.day-integration-rank-list-content .day-integration-rank-list-item .day-integration-rank-list-content-name-pm .name {
+  color: #FFFFFF;
+  font-size: 22px;
+  text-align: left;
+  padding-left: 20px;
+}
+.day-integration-rank-list-content .day-integration-rank-list-item .day-integration-rank-list-content-name-pm .rank {
+  color: #FFFFFF;
+  font-size: 26px;
+  text-align: right;
+  padding-right: 20px;
+}
