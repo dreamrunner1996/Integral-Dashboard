@@ -345,3 +345,24 @@
     flex-wrap: wrap;
     background-color: rgba(0,0,0,.2);
 }
+.home-content .bottom-card {
+    width: 1920px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border-top: 1px solid #666666;
+}
+.home-content .bottom-card .title {
+    width: 150px;
+    height: 100px;
+    line-height: 100px;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(225, 163, 57, .8);
+}
+.home-content .bottom-card .content {
+    width: calc(1920px - 150px);
+    height: 100px;
+}

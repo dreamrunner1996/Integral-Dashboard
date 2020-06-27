@@ -214,6 +214,12 @@
         </div>
       </div>
     </div>
+    <div class="bottom-card">
+      <div class="title">异常信息</div>
+      <div class="content">
+        <ExtraList />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -223,6 +229,7 @@
 
   import Time from "./../components/Time"
   import Notify from "../components/Notify"
+  import ExtraList from "../components/ExtraList"
   import DayIntegrationList from "../components/DayIntegration/DayIntegrationList/DayIntegrationList"
   import DayIntegrationRankList from "../components/DayIntegration/DayIntegrationRankList/DayIntegrationRankList"
   import DayIntegrationRankListBack from "../components/DayIntegration/DayIntegrationRankListBack/DayIntegrationRankListBack"
@@ -270,6 +277,7 @@
     components: {
       Time,
       Notify,
+      ExtraList,
       DayIntegrationList,
       DayIntegrationRankList,
       DayIntegrationRankListBack,
