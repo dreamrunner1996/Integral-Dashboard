@@ -24,7 +24,7 @@
               日积分人员表 <span style="color: lightgreen">{{'(' + dayIntegrationList['yesDay'] + ')'}}</span>
             </div>
             <div class="body-card-left-header-img">
-              <img src="./../assets/jx.png" alt="#" />
+              <img src="./../assets/jx.png" alt="none" />
             </div>
           </div>
           <div class="body-card-left-body" v-if="dayIntegrationList['data'].length">
