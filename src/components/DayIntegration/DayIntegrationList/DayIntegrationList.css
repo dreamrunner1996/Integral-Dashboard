@@ -1,0 +1,106 @@
+.day-integration-list-content {
+  width: 400px;
+  height: 160px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.day-integration-list-content .day-integration-list-item {
+  width: 400px;
+  height: 159px;
+  border-bottom: 1px solid #666666;
+  display: flex;
+  flex-direction: row;
+}
+.day-integration-list-content .day-integration-list-item .user-info {
+  width: 110px;
+  height: 159px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-integration-list-content .day-integration-list-item .user-info .user-info-logo {
+  width: 90px;
+  height: 90px;
+}
+.day-integration-list-content .day-integration-list-item .user-info .user-info-name {
+  color: #FFFFFF;
+  font-size: 26px;
+  margin-top: -20px;
+}
+
+.day-integration-list-content .day-integration-list-item .user-integration {
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-new-rank {
+  width: 260px;
+  height: 24px;
+  line-height: 24px;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-new-rank .user-integration-new {
+  height: 24px;
+  line-height: 24px;
+  font-size: 20px;
+  color: #FFFFFF;
+  float: left;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-new-rank .user-integration-rank {
+  height: 24px;
+  line-height: 24px;
+  font-size: 24px;
+  color: #eaec29;
+  float: right;
+}
+
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-yes-card {
+  height: 46px;
+  width: 256px;
+  border: 2px solid #54fdff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-yes-card .title {
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: bold;
+  width: 100px;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-yes-card .card-item {
+  width: 156px;
+  padding-left: 20px;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-yes-card .card-item div {
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-before-yes-card {
+  height: 46px;
+  width: 256px;
+  border: 2px solid #8bea2e;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-before-yes-card .title {
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: bold;
+  width: 100px;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-before-yes-card .card-item {
+  width: 156px;
+  padding-left: 20px;
+}
+.day-integration-list-content .day-integration-list-item .user-integration .user-integration-before-yes-card .card-item div {
+  text-align: left;
+  color: #FFFFFF;
+}
