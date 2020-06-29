@@ -21,14 +21,14 @@
         <div class="body-card-left-item-one">
           <div class="body-card-left-header">
             <div class="body-card-left-header-text">
-              日积分人员表 <span style="color: lightgreen">{{'(' + dayIntegrationList['yesDay'] + ')'}}</span>
+              日积分人员表 <span style="color: lightgreen">({{dayIntegrationList['yesDay'] ? dayIntegrationList['yesDay'] : '无'}})</span>
             </div>
             <div class="body-card-left-header-img">
               <img src="./../assets/jx.png" alt="none" />
             </div>
           </div>
-          <div class="body-card-left-body" v-if="dayIntegrationList['data'].length">
-            <div :style="styleList.dayIntegralListScroll">
+          <div class="body-card-left-body">
+            <div :style="styleList.dayIntegralListScroll" v-if="dayIntegrationList['data'].length">
               <DayIntegrationList v-for="(item, index) in dayIntegrationList['data']"
                                   :key="'dayIntegralItem' + index"
                                   :yes-data-exist="dayIntegrationYesExist"
@@ -44,6 +44,9 @@
                                   :integralLastSite="item['lastIntegralSite']"
                                   :chargeCompleteCount="0"
               />
+            </div>
+            <div style="display: flex; height: 100%; flex-direction: column; justify-content: center; align-items: center; font-size: 30px; color: #FFFFFF" v-else>
+              没有数据
             </div>
           </div>
         </div>
@@ -217,7 +220,20 @@
     <div class="bottom-card">
       <div class="title">异常信息</div>
       <div class="content">
-        <ExtraList />
+        <div v-if="dayExtraYesExist || dayExtraLastExist" :style="styleList.extraListScroll">
+          <ExtraList v-for="(item, index) in extraList"
+                     :key="'extraItem' + index"
+                     :time="item['time']"
+                     :project="item['res']['projectName']"
+                     :task="item['res']['taskName']"
+                     :member="item['res']['taskMember']"
+                     :extra="item['res']['detail']"
+                     :branch="item['res']['branchNames']"
+          />
+        </div>
+        <div v-else style="width: 100%; height: 100px; font-size: 40px; line-height: 100px; text-align: center; color: #FFFFFF">
+          无
+        </div>
       </div>
     </div>
   </div>
@@ -271,6 +287,12 @@
     marginTop: 0,
     animation: "monthIntegralListRankBackScroll 20s linear infinite"
   }
+  let extraListScroll = {
+    marginTop: 0,
+    animationName: "extraListScroll",
+    animationTimingFunction: "cubic-bezier(0.42,0,0.58,1)",
+    animationIterationCount: "infinite"
+  }
 
   export default {
     name: "Home",
@@ -296,7 +318,8 @@
         dayLastIntegralListRankBackScroll,
         monthIntegralListScroll,
         monthIntegralListRankScroll,
-        monthIntegralListRankBackScroll
+        monthIntegralListRankBackScroll,
+        extraListScroll
       },
       // 没有通知时显示标题名
       dashboardName: "积分看板",
@@ -320,12 +343,17 @@
       // 月积分排行榜
       monthIntegrationRankList: [],
       // 月积分排行榜(倒)
-      monthIntegrationRankBackList: []
+      monthIntegrationRankBackList: [],
+      // 额外信息列表
+      extraList: [],
+      dayExtraYesExist: false,
+      dayExtraLastExist: false,
     }),
     mounted() {
       let _this = this
       // 获取数据 - 并进行数据处理
       _this.GetData()
+
     },
     methods: {
       GetData() {
@@ -334,23 +362,32 @@
         _this.dayIntegrationList = {}
         _this.dayIntegrationList.data = []
         Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path, { params: _this.dataApi.condition }). then(res => {
+          console.log(res.data)
           dataList = JSON.parse(JSON.stringify(res.data))
           _this.getAllData = dataList
           /** 昨日数据处理 */
-          // 如果存在数据
+          // 如果存在积分数据
           if(dataList['integralByDay'][1]['integralList'].length) {
             _this.dayIntegrationYesExist = true
-            // 处理并存放数据
+            // 处理并存放积分数据
             dataList['integralByDay'][1]['integralList'].forEach(res => {
               _this.dayIntegrationList.data.push({
                 user: res['user']['nickName'],
                 logo: res['user']['avatarName'],
                 yesSort: res['sort'] === null ? 999 : res['sort'],
                 lastSort: 999,
-                yesIntegralTask: res['integralTask'] === null ? 0 : res['integralTask'],
-                lastIntegralTask: res['integralTask'] === null ? 0 : res['integralTask'],
-                yesIntegralSite: res['integralSite'] === null ? 0 : res['integralSite'],
-                astIntegralSite: res['integralSite'] === null ? 0 : res['integralSite']
+                yesIntegralTask: (() => {
+                  return res['details'] !== null ? (res['details'].find(res1 => {
+                    return res1['type'] === 'Task'
+                  }))['integral'] : 0
+                })(),
+                lastIntegralTask: 0,
+                yesIntegralSite: (() => {
+                  return res['details'] !== null ? (res['details'].find(res1 => {
+                    return res1['type'] === 'Site'
+                  }))['integral'] : 0
+                })(),
+                lastIntegralSite: 0
               })
             })
             // 整理排名规则
@@ -360,10 +397,20 @@
                 res['yesSort'] !== _this.dayIntegrationList.data[index-1]['yesSort'] ? _this.dayIntegrationList.data[index]['yesRank'] = index + 1 : _this.dayIntegrationList.data[index]['yesRank'] = _this.dayIntegrationList.data[index - 1]['yesRank']
               }
             })
-            console.log(_this.dayIntegrationList.data)
           }
           else {
             _this.dayIntegrationYesExist = false
+          }
+          // 如果存在异常数据
+          if(dataList['integralByDay'][1]['extraList'].length) {
+            _this.dayExtraYesExist = true
+            // 处理并存放异常数据
+            dataList['integralByDay'][1]['extraList'].forEach(res => {
+              _this.extraList.push({ res, time: dataList['integralByDay'][1]['day'] })
+            })
+          }
+          else {
+            _this.dayExtraYesExist = false
           }
           /** 前日数据处理 */
           // 如果存在数据
@@ -375,8 +422,16 @@
               _this.dayIntegrationList.data.forEach(res => {
                 dataList['integralByDay'][0]['integralList'].forEach(res2 => {
                   if( res['user'] === res2['user']['nickName'] ) {
-                    res['lastIntegralSite'] = (res2['integralSite'] === null ? 0 : res2['integralSite'])
-                    res['lastIntegralTask'] = (res2['integralTask'] === null ? 0 : res2['integralTask'])
+                    res['lastIntegralTask'] = (() => {
+                      return res2['details'] !== null ? (res2['details'].find(res1 => {
+                        return res1['type'] === 'Task'
+                      }))['integral'] : 0
+                    })()
+                    res['lastIntegralSite'] = (() => {
+                      return res2['details'] !== null ? (res2['details'].find(res1 => {
+                        return res1['type'] === 'Site'
+                      }))['integral'] : 0
+                    })()
                     res['lastSort'] = (res2['sort'] === null ? 999 : res2['sort'])
                     return true
                   }
@@ -392,9 +447,17 @@
                   yesSort: 999,
                   lastSort: res['sort'] === null ? 999 : res['sort'],
                   yesIntegralTask: 0,
-                  lastIntegralTask: res['integralTask'] === null ? 0 : res['integralTask'],
+                  lastIntegralTask: (() => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
+                      return res1['type'] === 'Task'
+                    }))['integral'] : 0
+                  })(),
                   yesIntegralSite: 0,
-                  lastIntegralSite: res['integralSite'] === null ? 0 : res['integralSite']
+                  lastIntegralSite: (() => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
+                      return res1['type'] === 'Site'
+                    }))['integral'] : 0
+                  })()
                 })
               })
             }
@@ -410,10 +473,18 @@
             _this.dayIntegrationLastExist = false
           }
           _this.DayRankList()
+          // 如果存在异常数据
+          if(dataList['integralByDay'][0]['extraList'].length) {
+            dataList['integralByDay'][0]['extraList'].forEach(res => {
+              _this.extraList.push({ res, time: dataList['integralByDay'][0]['day'] })
+            })
+          }
+          else {
+            _this.dayExtraLastExist = false
+          }
           // 获取时间
           _this.$set(_this.dayIntegrationList, 'yesDay', dataList['integralByDay'][1]['day'])
           _this.$set(_this.dayIntegrationList, 'lastDay', dataList['integralByDay'][0]['day'])
-
           /** 月数据处理 */
           // 如果存在数据 (若本月为空, 获取上月数据  ---  即获取有的数据)
           if(dataList['integralByMonth'][dataList['integralByMonth'].length - 1]['integralList'].length) {
@@ -424,10 +495,26 @@
                 user: res['user']['nickName'],
                 logo: res['user']['avatarName'],
                 sort: res['sort'] === null ? 999 : res['sort'],
-                integralTaskSum: res['integralTaskSum'] === null ? 0 : res['integralTaskSum'],
-                integralSiteSum: res['integralSiteSum'] === null ? 0 : res['integralSiteSum'],
-                integralTaskAvg: res['integralTaskAvg'] === null ? 0 : res['integralTaskAvg'],
-                integralSiteAvg: res['integralSiteAvg'] === null ? 0 : res['integralSiteAvg']
+                integralTaskSum: (() => {
+                  return res['details'] !== null ? res['details'].find(res1 => {
+                    return res1['type'] === 'Task'
+                  })['integralSum'] : 0
+                })(),
+                integralSiteSum: (() => {
+                  return res['details'] !== null ? res['details'].find(res1 => {
+                    return res1['type'] === 'Site'
+                  })['integralSum'] : 0
+                })(),
+                integralTaskAvg: (() => {
+                  return res['details'] !== null ? res['details'].find(res1 => {
+                    return res1['type'] === 'Task'
+                  })['integralAvg'] : 0
+                })(),
+                integralSiteAvg: (() => {
+                  return res['details'] !== null ? res['details'].find(res1 => {
+                    return res1['type'] === 'Site'
+                  })['integralAvg'] : 0
+                })()
               })
             })
             // 整理排名规则
@@ -437,7 +524,6 @@
                 res['sort'] !== _this.monthIntegrationList.data[index-1]['sort'] ? _this.monthIntegrationList.data[index]['rank'] = index + 1 : _this.monthIntegrationList.data[index]['rank'] = _this.monthIntegrationList.data[index - 1]['rank']
               }
             })
-            console.log(_this.monthIntegrationList.data)
           }
           else {
             _this.monthIntegrationListExist = false
@@ -473,9 +559,6 @@
             else { return false }
           })
         }
-        console.log(_this.dayIntegrationYesList)
-        console.log(_this.dayIntegrationYesListBack)
-
         // 前日
         if(this.dayIntegrationLastExist) {
           let middleData = JSON.parse(JSON.stringify(this.dayIntegrationList.data))
@@ -565,8 +648,6 @@
           }`)
         }
         if(_this.monthIntegrationRankList.length > 10) {
-          console.log(_this.monthIntegrationRankList.length)
-          console.log((_this.monthIntegrationRankList.length / 2).toFixed(0)*1)
           document.styleSheets[0].insertRule(`@keyframes monthIntegralListRankScroll {
             10% { margin-top: 0 }
             50% { margin-top: calc(${-70 * (((_this.monthIntegrationRankList.length - 10) / 2).toFixed(0)*1) + 2}px) }
@@ -575,8 +656,6 @@
           }`)
         }
         if(_this.monthIntegrationRankBackList.length > 10) {
-          console.log(_this.monthIntegrationRankBackList.length)
-          console.log((_this.monthIntegrationRankBackList.length / 2).toFixed(0)*1)
           document.styleSheets[0].insertRule(`@keyframes monthIntegralListRankBackScroll {
             10% { margin-top: 0 }
             50% { margin-top: calc(${-70 * (((_this.monthIntegrationRankBackList.length - 10) / 2).toFixed(0)*1) + 2}px) }
@@ -584,6 +663,20 @@
             100% { margin-top: 0 }
           }`)
         }
+        if(_this.extraList.length > 1) {
+          let animationString = ''
+          _this.$set(_this.styleList.extraListScroll, 'animationDuration', _this.extraList.length * 10)
+          extraListScroll['animationDuration'] = (_this.extraList.length * 10)+'s'
+          for(let i in _this.extraList) {
+            animationString += `${((100/_this.extraList.length) * (i*1+1) - 1).toFixed(0) }% { margin-top: calc(${ -100 * (i * 1) }px) }`
+            i*1 !== _this.extraList.length - 1 ? animationString += `${((100/_this.extraList.length) * (i*1+1)).toFixed(0) }% { margin-top: calc(${ -100 * (i * 1 + 1) }px) }` : animationString += `${((100/_this.extraList.length) * (i*1+1)).toFixed(0) }% { margin-top: 0px }`
+          }
+          document.styleSheets[0].insertRule(`@keyframes extraListScroll {`
+            + `0% { margin-top: 0 }`
+            + animationString
+          + '}')
+        }
+        console.log(document.styleSheets[0])
       }
     }
   }

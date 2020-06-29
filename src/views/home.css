@@ -365,4 +365,5 @@
 .home-content .bottom-card .content {
     width: calc(1920px - 150px);
     height: 100px;
+    overflow: hidden;
 }

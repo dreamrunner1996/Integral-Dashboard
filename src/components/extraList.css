@@ -6,8 +6,7 @@
   flex-wrap: nowrap;
 }
 .extra-list-content .extra-item-head {
-  width: 410px;
-  padding: 0 20px;
+  width: 740px;
   box-sizing: border-box;
   border-left: 1px solid #666666;
   display: flex;
@@ -15,18 +14,60 @@
   justify-content: space-around;
   align-items: center;
 }
-.extra-list-content .extra-item-head .name-team {
-  align-self: flex-start;
-  color: #FFFFFF;
-  font-size: 26px;
+.extra-list-content .extra-item-head .project-task {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
 }
-.extra-list-content .extra-item-head .team-members {
-  align-self: flex-end;
+.extra-list-content .extra-item-head .project-task .project-name {
+  color: #eaec29;
+  font-size: 30px;
+}
+.extra-list-content .extra-item-head .project-task .task-name {
+  color: #54fdff;
+  font-size: 23px;
+  margin-right: 20px;
+}
+.extra-list-content .extra-item-head .branch-name {
+  color: #eaec29;
+  font-size: 20px;
+  margin-top: -20px;
+  text-align: left;
+  width: calc(100% - 30px);
+  margin-left: 30px;
+  line-height: 30px;
+}
+.extra-list-content .extra-item-head .time-member {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  padding: 0 20px;
+  margin-top: -15px;
+}
+.extra-list-content .extra-item-head .time-member .time-content {
+  color: #90EE90;
+  font-size: 22px;
+  text-align: left;
+}
+.extra-list-content .extra-item-head .time-member .member-content {
   color: #FFFFFF;
-  font-size: 16px;
+  font-size: 25px;
+  text-align: right;
 }
 .extra-list-content .extra-item-body {
-  width: 1320px;
+  width: 1070px;
+  padding: 0 20px;
   box-sizing: border-box;
   border-left: 1px solid #666666;
+  color: #FFFFFF;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  overflow: hidden;
 }

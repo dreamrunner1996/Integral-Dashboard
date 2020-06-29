@@ -2,7 +2,7 @@
   <div class="day-integration-rank-list-back-content">
     <div class="day-integration-rank-list-back-item">
       <div class="day-integration-rank-list-back-content-image">
-        <img :src="headImage" alt="#">
+        <img :src="logo" alt="#">
       </div>
       <div class="day-integration-rank-list-back-content-name-pm">
         <div class="name"> {{ name }} </div>
@@ -18,7 +18,7 @@
   export default {
     name: "DayIntegrationRankListBack",
     props: {
-      headImage: {
+      logo: {
         default: "http://t8.baidu.com/it/u=2247852322,986532796&fm=79&app=86&f=JPEG?w=1280&h=853",
         type: String
       },
