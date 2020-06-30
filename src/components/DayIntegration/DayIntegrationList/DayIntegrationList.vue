@@ -2,7 +2,7 @@
   <div class="day-integration-list-content">
     <div class="day-integration-list-item">
       <div class="user-info">
-        <img class="user-info-logo" :src="logo" alt="#">
+        <img class="user-info-logo" :src="logo ? logo : userLogo" alt="#">
         <div class="user-info-name">{{ name ? name : '' }}</div>
       </div>
       <div class="user-integration">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  let userLogo = require("./../../../assets/header.png")
   import "./DayIntegrationList.css"
 
   export default {
@@ -86,7 +87,9 @@
         type: Number
       }
     },
-    data: () => ({})
+    data: () => ({
+      userLogo: userLogo
+    })
   }
 </script>
 

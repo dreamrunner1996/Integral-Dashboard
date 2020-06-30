@@ -2,7 +2,7 @@
   <div class="day-integration-rank-list-back-content">
     <div class="day-integration-rank-list-back-item">
       <div class="day-integration-rank-list-back-content-image">
-        <img :src="logo" alt="#">
+        <img :src="logo ? logo : userLogo " alt="#">
       </div>
       <div class="day-integration-rank-list-back-content-name-pm">
         <div class="name"> {{ name }} </div>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  let userLogo = require("./../../../assets/header.png")
   import "./DayIntegrationRankListBack.css"
 
   export default {
@@ -31,6 +32,8 @@
         type: Number
       },
     },
-    data: () => ({})
+    data: () => ({
+      userLogo: userLogo
+    })
   }
 </script>

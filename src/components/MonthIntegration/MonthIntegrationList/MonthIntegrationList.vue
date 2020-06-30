@@ -2,7 +2,7 @@
   <div class="month-integration-list-content">
     <div class="month-integration-list-item">
       <div class="user-info">
-        <img class="user-info-logo" :src="logo" alt="#">
+        <img class="user-info-logo" :src="logo ? logo : userLogo" alt="#">
         <div class="user-info-name">{{ name }}</div>
       </div>
       <div class="user-integration">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+  let userLogo = require("./../../../assets/header.png")
   import "./MonthIntegrationList.css"
 
   export default {
@@ -44,6 +45,8 @@
       integralSiteAvg: { default: 0, type: Number },
       integralSiteSum: { default: 0, type: Number }
     },
-    data: () => ({})
+    data: () => ({
+      userLogo: userLogo
+    })
   }
 </script>

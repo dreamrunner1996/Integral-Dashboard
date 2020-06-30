@@ -1,7 +1,7 @@
 <template>
   <div class="month-integration-rank-list-back-content">
     <div class="user-info-logo">
-      <img :src="logo" alt="#">
+      <img :src="logo ? logo : userLogo" alt="#">
     </div>
     <div class="user-info-name-rank">
       <div class="user-info-name">{{ name }}</div>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  let userLogo = require("./../../../assets/header.png")
   import "./MonthIntegrationRankListBack.css"
 
   export default {
@@ -29,6 +30,8 @@
         type: Number
       }
     },
-    data: () => ({})
+    data: () => ({
+      userLogo: userLogo
+    })
   }
 </script>

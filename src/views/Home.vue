@@ -44,7 +44,7 @@
                                   :chargeCompleteCount="0"
               />
             </div>
-            <div style="display: flex; height: 100%; flex-direction: column; justify-content: center; align-items: center; font-size: 30px; color: #FFFFFF" v-else>
+            <div style="animation: gradient 2s infinite linear; display: flex; height: 100%; flex-direction: column; justify-content: center; align-items: center; font-size: 30px; color: #FFFFFF" v-else>
               没有数据
             </div>
           </div>
@@ -52,7 +52,7 @@
         <div class="body-card-left-item-two">
           <div class="body-card-left-item-two-card1">
             <div class="card-header">
-              <div style="font-size: 22px; color: white">日积分排行榜</div>
+              <div style="font-size: 22px; color: white">日积分前十名排行榜</div>
               <div style="width: 30px; height: 30px">
                 <img style="width: 30px; height: 30px" src="./../assets/jx.png" alt="#" />
               </div>
@@ -69,8 +69,8 @@
                                             :rank="item['yesRank']"
                     />
                   </div>
-                  <div style="height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center" v-else>
-                    没有导入数据
+                  <div style="animation: gradient 2s infinite linear; height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center" v-else>
+                    没有数据
                   </div>
                 </div>
               </div>
@@ -85,8 +85,8 @@
                                             :rank="item['lastRank']"
                     />
                   </div>
-                  <div v-else style="height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center">
-                    没有导入数据
+                  <div v-else style="animation: gradient 2s infinite linear; height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                    没有数据
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@
           </div>
           <div class="body-card-left-item-two-card2">
             <div class="card-header">
-              <div style="font-size: 22px; color: white">日积分排行榜(倒)</div>
+              <div style="font-size: 22px; color: white">日积分后十名排行榜</div>
               <div style="width: 30px; height: 30px">
                 <img style="width: 30px; height: 30px" src="./../assets/jx.png" alt="#" />
               </div>
@@ -111,8 +111,8 @@
                                                 :rank="item['yesRank']"
                     />
                   </div>
-                  <div v-else style="height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center">
-                    没有导入数据
+                  <div v-else style="animation: gradient 2s infinite linear; height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                    没有数据
                   </div>
                 </div>
               </div>
@@ -127,8 +127,8 @@
                                                  :rank="item['lastRank']"
                     />
                   </div>
-                  <div v-else style="height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center">
-                    没有导入数据
+                  <div v-else style="animation: gradient 2s infinite linear; height: 100%; color: #FFFFFF; font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                    没有数据
                   </div>
                 </div>
               </div>
@@ -161,7 +161,7 @@
                                     :integral-site-avg="item['integralSiteAvg']"
               />
             </div>
-            <div v-else style="height: 100%; color: rgb(255, 255, 255); font-size: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div v-else style="animation: gradient 2s infinite linear; height: 100%; color: rgb(255, 255, 255); font-size: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
               没有数据
             </div>
           </div>
@@ -170,7 +170,7 @@
           <div class="body-card-right-item-two-card1">
             <div class="card-header">
               <div style="font-size: 22px; color: white">
-                月积分排行榜 <span style="color: #FFFFFF">&lt;{{monthIntegrationList['month'] ? monthIntegrationList['month'] : '无'}}&gt;</span>
+                月积分前十名排行榜 <span style="color: #FFFFFF">&lt;{{monthIntegrationList['month'] ? monthIntegrationList['month'] : '无'}}&gt;</span>
               </div>
               <div style="width: 30px; height: 30px">
                 <img style="width: 30px; height: 30px" src="./../assets/jx.png" alt="#" />
@@ -186,14 +186,14 @@
                 />
               </div>
             </div>
-            <div v-else style="background-color: rgba(0,0,0,.2); height: calc(100% - 40px); width: 450px; color: rgb(255, 255, 255); font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div v-else style="animation: gradient 2s infinite linear; background-color: rgba(0,0,0,.2); height: calc(100% - 40px); width: 450px; color: rgb(255, 255, 255); font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
               没有数据
             </div>
           </div>
           <div class="body-card-right-item-two-card2">
             <div class="card-header">
               <div style="font-size: 22px; color: white">
-                月积分排行榜(倒) <span style="color: #FFFFFF">&lt;{{monthIntegrationList['month'] ? monthIntegrationList['month'] : '无'}}&gt;</span>
+                月积分后十名排行榜 <span style="color: #FFFFFF">&lt;{{monthIntegrationList['month'] ? monthIntegrationList['month'] : '无'}}&gt;</span>
               </div>
               <div style="width: 30px; height: 30px">
                 <img style="width: 30px; height: 30px" src="./../assets/jx.png" alt="#" />
@@ -209,7 +209,7 @@
                 />
               </div>
             </div>
-            <div v-else style="background-color: rgba(0,0,0,.2); height: calc(100% - 40px); width: 450px; color: rgb(255, 255, 255); font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div v-else style="animation: gradient 2s infinite linear; background-color: rgba(0,0,0,.2); height: calc(100% - 40px); width: 450px; color: rgb(255, 255, 255); font-size: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
               没有数据
             </div>
           </div>
@@ -230,7 +230,7 @@
                      :branch="item['res']['branchNames']"
           />
         </div>
-        <div v-else style="width: 100%; height: 100px; font-size: 40px; line-height: 100px; text-align: center; color: #FFFFFF">
+        <div v-else style="animation: gradient 2s infinite linear; width: 100%; height: 100px; font-size: 40px; line-height: 100px; text-align: center; color: #FFFFFF">
           无
         </div>
       </div>
@@ -383,8 +383,8 @@
               // 处理并存放积分数据
               dataList['integralByDay'][1]['integralList'].forEach(res => {
                 _this.dayIntegrationList.data.push({
-                  user: res['user']['nickName'],
-                  logo: res['user']['avatarName'],
+                  user: res['user'] ? res['user']['nickName'] : '',
+                  logo: res['user'] ? res['user']['avatarName'] : '',
                   yesSort: res['sort'] === null ? 999 : res['sort'],
                   lastSort: 999,
                   yesIntegralTask: (() => {
@@ -453,8 +453,8 @@
                 // 如果不存在昨日数据, 则将前日数据进行push, 昨日数据进行置零
                 dataList['integralByDay'][0]['integralList'].forEach(res => {
                   _this.dayIntegrationList.data.push({
-                    user: res['user']['nickName'],
-                    logo: res['user']['avatarName'],
+                    user: res['user'] ? res['user']['nickName'] : '',
+                    logo: res['user'] ? res['user']['avatarName'] : '',
                     yesSort: 999,
                     lastSort: res['sort'] === null ? 999 : res['sort'],
                     yesIntegralTask: 0,
@@ -512,8 +512,8 @@
               // 处理并存放数据
               dataList['integralByMonth'][dataList['integralByMonth'].length - 1]['integralList'].forEach(res => {
                 _this.monthIntegrationList.data.push({
-                  user: res['user']['nickName'],
-                  logo: res['user']['avatarName'],
+                  user: res['user'] ? res['user']['nickName'] : '',
+                  logo: res['user'] ? res['user']['avatarName'] : '',
                   sort: res['sort'] === null ? 999 : res['sort'],
                   integralTaskSum: (() => {
                     return res['details'] !== null ? res['details'].find(res1 => {
