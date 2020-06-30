@@ -13,15 +13,15 @@
         <div class="user-integration-plan-card">
           <div class="title">计划管控</div>
           <div class="card-item">
-            <div class="all">总积分: {{ integralTaskSum }}</div>
-            <div class="average">平均积分: {{ integralTaskAvg }}</div>
+            <div class="all">总积分: {{ integralTaskSum ? integralTaskSum.toFixed(2) : 0 }}</div>
+            <div class="average">平均积分: {{ integralTaskAvg ? integralTaskAvg.toFixed(2) : 0 }}</div>
           </div>
         </div>
         <div class="user-integration-clean-card">
           <div class="title">现场管理</div>
           <div class="card-item">
-            <div class="all">总积分: {{ integralSiteSum }}</div>
-            <div class="average">平均积分: {{ integralSiteAvg }}</div>
+            <div class="all">总积分: {{ integralSiteSum ? integralSiteSum.toFixed(2) : 0 }}</div>
+            <div class="average">平均积分: {{ integralSiteAvg ? integralSiteAvg.toFixed(2) : 0 }}</div>
           </div>
         </div>
       </div>

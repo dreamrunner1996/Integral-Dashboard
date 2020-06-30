@@ -12,8 +12,7 @@
         </div>
       </div>
       <div class="time-card">
-<!--        <Time @hourChange="HourChange" />-->
-        <Time />
+        <Time @hourChange="HourChange" />
       </div>
     </div>
     <div class="body-card">
@@ -351,9 +350,7 @@
     }),
     mounted() {
       let _this = this
-      // 获取数据 - 并进行数据处理
       _this.GetData()
-
     },
     methods: {
       GetData() {
@@ -362,7 +359,6 @@
         _this.dayIntegrationList = {}
         _this.dayIntegrationList.data = []
         Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path, { params: _this.dataApi.condition }). then(res => {
-          console.log(res.data)
           dataList = JSON.parse(JSON.stringify(res.data))
           _this.getAllData = dataList
           /** 昨日数据处理 */
@@ -676,7 +672,9 @@
             + animationString
           + '}')
         }
-        console.log(document.styleSheets[0])
+      },
+      HourChange() {
+        this.GetData()
       }
     }
   }
