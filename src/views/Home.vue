@@ -5,9 +5,9 @@
         <img src="./../assets/logo.png" alt="#" />
       </div>
       <div class="notify-card">
-        <img v-if="notifyMessage.length > 0" src="./../assets/notify.png" alt="#" />
+        <img v-if="notifyMessage.length" src="./../assets/notify.png" alt="#" />
         <div class="notify-content">
-          <span v-if="!notifyMessage.length > 0">{{ dashboardName }}</span>
+          <span v-if="!notifyMessage.length">{{ dashboardName }}</span>
           <Notify :notifyMessage="notifyMessage" />
         </div>
       </div>
@@ -356,12 +356,25 @@
       GetData() {
         let _this = this
         let dataList = []
+        _this.notifyMessage = []
         _this.dayIntegrationList = {}
         _this.dayIntegrationList.data = []
+        _this.monthIntegrationList = {}
+        _this.monthIntegrationList.data = []
         Axios.get(_this.dataApi.url+":"+_this.dataApi.port+_this.dataApi.path, { params: _this.dataApi.condition }). then(res => {
           console.log(res.data)
           dataList = JSON.parse(JSON.stringify(res.data))
           _this.getAllData = dataList
+          /** 通知消息处理 */
+          if(res.data['notifyList']) {
+            // 如果存在通知数据
+            if(dataList['notifyList'].length) {
+              dataList['notifyList'].forEach(res => {
+                _this.notifyMessage.push(res)
+              })
+            }
+          }
+
           /** 昨日数据处理 */
           if(res.data['integralByDay']) {
             // 如果存在积分数据
