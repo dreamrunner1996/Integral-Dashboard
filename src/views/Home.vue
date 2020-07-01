@@ -41,7 +41,7 @@
                                   :integralYesSite="item['yesIntegralSite']"
                                   :integralLastTask="item['lastIntegralTask']"
                                   :integralLastSite="item['lastIntegralSite']"
-                                  :chargeCompleteCount="0"
+                                  :chargeCompleteCount="item['trainNew']"
               />
             </div>
             <div style="animation: gradient 2s infinite linear; display: flex; height: 100%; flex-direction: column; justify-content: center; align-items: center; font-size: 30px; color: #FFFFFF" v-else>
@@ -154,7 +154,7 @@
                                     :name="item['user']"
                                     :logo="item['logo']"
                                     :rank="item['rank']"
-                                    :charge-complete-count="10"
+                                    :charge-complete-count="item['taskChargeCompeteCount']"
                                     :integral-task-sum="item['integralTaskSum']"
                                     :integral-task-avg="item['integralTaskAvg']"
                                     :integral-site-sum="item['integralSiteSum']"
@@ -348,10 +348,6 @@
       dayExtraYesExist: false,
       dayExtraLastExist: false,
     }),
-    mounted() {
-      let _this = this
-      _this.GetData()
-    },
     methods: {
       GetData() {
         let _this = this
@@ -390,15 +386,26 @@
                   yesIntegralTask: (() => {
                     return res['details'] !== null ? (res['details'].find(res1 => {
                       return res1['type'] === 'Task'
-                    }))['integral'] : 0
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'Task'
+                    })['integral'] : 0) : 0
                   })(),
                   lastIntegralTask: 0,
                   yesIntegralSite: (() => {
                     return res['details'] !== null ? (res['details'].find(res1 => {
                       return res1['type'] === 'Site'
-                    }))['integral'] : 0
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'Site'
+                    })['integral'] : 0) : 0
                   })(),
-                  lastIntegralSite: 0
+                  lastIntegralSite: 0,
+                  trainNew: (() => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
+                      return res1['type'] === 'TrainNew'
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'TrainNew'
+                    })['integral'] : 0) : 0
+                  })()
                 })
               })
               // 整理排名规则
@@ -436,12 +443,16 @@
                       res['lastIntegralTask'] = (() => {
                         return res2['details'] !== null ? (res2['details'].find(res1 => {
                           return res1['type'] === 'Task'
-                        }))['integral'] : 0
+                        }) ? res2['details'].find(res1 => {
+                          return res1['type'] === 'Task'
+                        })['integral'] : 0) : 0
                       })()
                       res['lastIntegralSite'] = (() => {
                         return res2['details'] !== null ? (res2['details'].find(res1 => {
                           return res1['type'] === 'Site'
-                        }))['integral'] : 0
+                        }) ? res2['details'].find(res1 => {
+                          return res1['type'] === 'Site'
+                        })['integral'] : 0) : 0
                       })()
                       res['lastSort'] = (res2['sort'] === null ? 999 : res2['sort'])
                       return true
@@ -461,13 +472,24 @@
                     lastIntegralTask: (() => {
                       return res['details'] !== null ? (res['details'].find(res1 => {
                         return res1['type'] === 'Task'
-                      }))['integral'] : 0
+                      }) ? res['details'].find(res1 => {
+                        return res1['type'] === 'Task'
+                      }) : 0) : 0
                     })(),
                     yesIntegralSite: 0,
                     lastIntegralSite: (() => {
                       return res['details'] !== null ? (res['details'].find(res1 => {
                         return res1['type'] === 'Site'
-                      }))['integral'] : 0
+                      }) ? res['details'].find(res1 => {
+                        return res1['type'] === 'Site'
+                      })['integral'] : 0) : 0
+                    })(),
+                    trainNew: (() => {
+                      return res['details'] !== null ? (res['details'].find(res1 => {
+                        return res1['type'] === 'TrainNew'
+                      }) ? res['details'].find(res1 => {
+                        return res1['type'] === 'TrainNew'
+                      })['integral'] : 0) : 0
                     })()
                   })
                 })
@@ -516,24 +538,32 @@
                   logo: res['user'] ? res['user']['avatarName'] : '',
                   sort: res['sort'] === null ? 999 : res['sort'],
                   integralTaskSum: (() => {
-                    return res['details'] !== null ? res['details'].find(res1 => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
                       return res1['type'] === 'Task'
-                    })['integralSum'] : 0
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'Task'
+                    })['integralSum'] : 0) : 0
                   })(),
                   integralSiteSum: (() => {
-                    return res['details'] !== null ? res['details'].find(res1 => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
                       return res1['type'] === 'Site'
-                    })['integralSum'] : 0
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'Site'
+                    })['integralSum'] : 0) : 0
                   })(),
                   integralTaskAvg: (() => {
-                    return res['details'] !== null ? res['details'].find(res1 => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
                       return res1['type'] === 'Task'
-                    })['integralAvg'] : 0
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'Task'
+                    })['integralAvg'] : 0) : 0
                   })(),
                   integralSiteAvg: (() => {
-                    return res['details'] !== null ? res['details'].find(res1 => {
+                    return res['details'] !== null ? (res['details'].find(res1 => {
                       return res1['type'] === 'Site'
-                    })['integralAvg'] : 0
+                    }) ? res['details'].find(res1 => {
+                      return res1['type'] === 'Site'
+                    })['integralAvg'] : 0) : 0
                   })()
                 })
               })
